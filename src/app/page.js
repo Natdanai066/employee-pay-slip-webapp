@@ -28,6 +28,16 @@ function Profile() {
         <p style= {{ fontSize: "12px", marginBottom: "5px" }}>ค่าคอม ...%</p>
         <p style= {{ fontSize: "12px", marginBottom: "5px" }}>OT ...ชั่วโมง</p>
 
+      <div style={{backgroundColor : "lightgreen"}}>
+      <p style= {{ fontSize: "12px", marginBottom: "5px" }}>รายได้รวม...บาท    <p> <p style= {{ fontSize: "12px", marginBottom: "5px" }}>ยอด</p></p> </p>
+
+
+      </div>
+       <div>
+       <p style= {{ fontSize: "12px", marginBottom: "5px" }}>หนึ่งหมื่นสองพีนห้าร้อยบาทถ้วน</p>
+      
+       </div>
+
       
     </div> 
     </div>
