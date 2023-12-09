@@ -36,7 +36,7 @@ export default function ResultSlipPage() {
                     <p>315 ถ.เสนานิคม 1 ลาดพร้าว ลาดพร้าว กทม 10230 โทร 02-116-0144</p>
                     <hr color="black" width="100%" ></hr>
                     <div class="my-4">
-                <p class="text-sm">เริ่มงานวันที่ {employeeData.StartDate}  {employeeData.month} {employeeData.year} ระยะเวลาการทำงาน 2 ปี 8 เดือน</p>
+                <p class="text-sm">เริ่มงานวันที่ {employeeData.StartDate}  {employeeData.month} {employeeData.year} ระยะเวลาการทำงาน {employeeData.stage}</p>
                 <p class="text-sm">00{employeeData.id} {employeeData.mrms}{employeeData.firstname} {employeeData.lastname} เลขประจำตัว {employeeData.identificationnumber} โทร {employeeData.phonenumber}</p>
                 <p class="text-sm">ตำแหน่ง {employeeData.department} {employeeData.detail}</p>
               </div>
@@ -73,8 +73,21 @@ export default function ResultSlipPage() {
     <p style={{ color: 'black', margin: '0' }}>บาท/THB</p>
   </div>
 </div>
-<div style={{ flex: 1, marginRight: '10px' }}></div>
-<p style={{ color: 'black', margin: '0' }}>ข้อความช่องที่ 1</p>
+<p>รายได้สะสม{employeeData.stage}   </p>
+<p></p>
+<p>ประกันสังคม </p>
+<p></p>
+<p>สะสม </p>
+<p></p>
+<p>ลากิจ/ลาหยุด </p>
+<p></p>
+<p>คงเหลือวันลา </p>
+<p></p>
+<p>ลาป่วย </p>
+<p></p>
+<p>คงเหลือวันลา</p>
+<p></p>
+
                 </div>
             </div>
             
