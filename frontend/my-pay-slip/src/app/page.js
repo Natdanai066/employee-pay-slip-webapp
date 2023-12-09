@@ -34,7 +34,7 @@ export default function Page() {
       <div className="shadow-lg p-8 w-1/2 bg-white">
         <div className="flex justify-end">
           <button type="button" className="bg-sky-300 px-4 py-2 rounded-md" onClick={() => router.push('/formSlip')}>
-            เพิ่มข้อมูลพนักงาน
+            เพิ่มข้อมูล
           </button>
         </div>
         <table className="border-collapse border border-slate-400 table-auto w-full">
@@ -61,7 +61,7 @@ export default function Page() {
                   <td className="border border-slate-300">{employee.salary}</td>
                   <td className="border border-slate-300">
                     <Link className="bg-green-300 px-4 py-2 rounded-md ml-4" href={{ pathname: '/resultSlip', query: { empId: employee.id } }} >ดูสลิป</Link>
-                    <button className="bg-yellow-300 px-4 py-2 rounded-md ml-4" onClick={() => router.push('/editSlip')}>แก้ไข</button>
+                    
                     <button className="bg-red-300 px-4 py-2 rounded-md ml-4" onClick={() => deleteEmployee(employee.id)}>ลบ</button>
                   </td>
                 </tr>
