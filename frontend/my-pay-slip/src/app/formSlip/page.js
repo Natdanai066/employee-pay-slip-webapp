@@ -37,6 +37,10 @@ function SignUp() {
         
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
+            <label htmlFor="mrms"><strong>คำนำหน้า</strong></label>
+            <input type="text" placeholder="ใส่คำนำหน้า" name="mrms" className="form-control rounded-0" onChange={handleChange} />
+          </div>
+          <div className="mb-3">
             <label htmlFor="firstname"><strong>ชื่อ</strong></label>
             <input type="text" placeholder="ใส่ชื่อ" name="firstname" className="form-control rounded-0" onChange={handleChange} />
           </div>
@@ -72,6 +76,10 @@ function SignUp() {
           <div className="mb-3">
             <label htmlFor="identificationnumber"><strong>รหัสประจำตัว</strong></label>
             <input type="text" placeholder="ใส่รหัสประจำตัว" name="identificationnumber" className="form-control rounded-0" onChange={handleChange} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="stage"><strong>ระยะเวลาการทำงาน</strong></label>
+            <input type="text" placeholder="ใส่ระยะเวลาการทำงาน" name="stage" className="form-control rounded-0" onChange={handleChange} />
           </div>
           <button className="bg-green-300 px-4 py-2 rounded-md ml-4" type="submit"btn btn-success w-100 rounded-e>บันทึก</button>
         </form>

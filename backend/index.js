@@ -50,7 +50,10 @@ app.post('/insert', (req, res) => {
         req.body.identificationnumber,
         req.body.detail,
         req.body.SocialSecurity,
-        req.body.stage
+        req.body.stage,
+        req.body.mrms
+
+    
 
     ]
     db.query(sql, [value], (err, data) => {
