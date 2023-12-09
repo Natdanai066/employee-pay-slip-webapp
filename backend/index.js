@@ -47,7 +47,9 @@ app.post('/insert', (req, res) => {
         req.body.StartDate,
         req.body.month,
         req.body.year,
-        req.body.identificationnumber
+        req.body.identificationnumber,
+        req.body.detail,
+        req.body.SocialSecurity
 
     ]
     db.query(sql, [value], (err, data) => {

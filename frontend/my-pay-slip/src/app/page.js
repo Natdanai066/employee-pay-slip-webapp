@@ -41,6 +41,7 @@ export default function Page() {
           <thead>
             <tr>
               <th className="border border-slate-300">#</th>
+              <th className="border border-slate-300">คำนำหน้า</th>
               <th className="border border-slate-300">ชื่อ</th>
               <th className="border border-slate-300">นามสกุล</th>
               <th className="border border-slate-300">ตำแหน่ง</th>
@@ -54,6 +55,7 @@ export default function Page() {
               return (
                 <tr key={key}>
                   <td className="border border-slate-300">{employee.id}</td>
+                  <td className="border border-slate-300">{employee.mrms}</td>
                   <td className="border border-slate-300">{employee.firstname}</td>
                   <td className="border border-slate-300">{employee.lastname}</td>
                   <td className="border border-slate-300">{employee.department}</td>
