@@ -42,15 +42,39 @@ export default function ResultSlipPage() {
               </div>
               <hr color="black" width="100%" ></hr>
         
-                    <h3>เงินเดือน {employeeData.salary} บาท</h3>
-                    <p>ยอดขาย {employeeData.circulation}บาท</p>
-                    <p>ค่าคอม {employeeData.Commission} % = บาท </p>
-                    <p>OT {employeeData.OTH}  ชั่วโมง = {employeeData.OT}  บาท</p>
-                    
-                    <p> ประกันสังคม {employeeData.SocialSecurity} % =          บาท </p>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+  <div>
+    <h3>เงินเดือน {employeeData.salary} บาท</h3>
+    <p>ยอดขาย {employeeData.circulation} บาท</p>
+    <p>ค่าคอม {employeeData.Commission} % = {employeeData.CommissionAmount} บาท </p>
+    <p>OT {employeeData.OTH} ชั่วโมง = {employeeData.OT} บาท</p>
+  </div>
 
-                    
+  <div>
+    <p>ประกันสังคม {employeeData.SocialSecurity} % = {employeeData.SocialSecurityAmount} บาท </p>
+  </div>
+</div>
 
+                    <div style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: 'green', padding: '10px' }}>
+  <h3 style={{ color: 'white', margin: '0' }}>รายได้รวม บาท</h3>
+  <p style={{ color: 'white', margin: '0' }}>ยอดขาย บาท</p>
+</div>
+
+  
+<div style={{ display: 'flex', backgroundColor: 'white', padding: '10px' }}>
+  <div style={{ flex: 1, marginRight: '10px' }}>
+    <p style={{ color: 'black', margin: '0' }}>ข้อความช่องที่ 1</p>
+  </div>
+  <div style={{ flex: 1, marginRight: '10px' }}>
+    <p style={{ color: 'black', margin: '0' }}>ข้อความช่องที่ 2</p>
+  </div>
+  <div style={{ flex: 1 }}>
+    <h3 style={{ color: 'black', margin: '0' }}>ข้อความช่องที่ 3</h3>
+    <p style={{ color: 'black', margin: '0' }}>บาท/THB</p>
+  </div>
+</div>
+<div style={{ flex: 1, marginRight: '10px' }}></div>
+<p style={{ color: 'black', margin: '0' }}>ข้อความช่องที่ 1</p>
                 </div>
             </div>
             
