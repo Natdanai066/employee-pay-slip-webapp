@@ -1,91 +1,367 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import Link from 'next/link'
 
 function SignUp() {
+  const BASE_URL = "http://localhost:3001"
   const [values, setValues] = useState({
-    firstname: '',
-    lastname: '',
-    phonenumber: '',
-    department: '',
+    f_name: "",
+    l_name: "",
+    iden_no: "",
+    tel: "",
+    prefix: "",
+    department: "",
     salary: 0,
+    start_date: "",
+    end_date: "",
+    social_secure: 0,
+    personal_leave: 0,
+    sick_leave: 0,
+    bank: "",
+    acc_num:"",
+    bank_branch:"",
   });
 
+  const [isSubmitSucceed, setIsSubmitSucceed] = useState(false)
+
   const handleChange = (event) => {
-    setValues({ ...values, [event.target.name]: [event.target.value]});
-  }
+    setValues({ ...values, [event.target.name]: [event.target.value] });
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
     console.log(values);
 
-    // เพิ่มโค้ด Axios.post เพื่อส่งข้อมูลไปยัง API
-    Axios.post('http://localhost:3001/insert', values)
-      .then((res) => console.log("Registered Successfully!!"))
-      .catch((err) => console.log(err));
-  }
+    try {
+      // เพิ่มโค้ด Axios.post เพื่อส่งข้อมูลไปยัง API
+      await Axios.post(`${BASE_URL}/employee`, values)
+        .then((res) => console.log("Registered Successfully!!"))
+        .catch((err) => console.log(err));
+
+      setValues({
+        f_name: "",
+        l_name: "",
+        iden_no: "",
+        tel: "",
+        prefix: "",
+        department: "",
+        salary: 0,
+        start_date: "",
+        end_date: "",
+        social_secure: 0,
+        personal_leave: 0,
+        sick_leave: 0,
+        bank: "",
+        stage:"",
+        acc_num:"",
+        bank_branch:"",
+      });
+
+      window.location.reload();
+
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
 
   return (
     <div className="h-screen flex justify-center items-center">
-                <div className="relative shadow-lg p-8 w-[595px] h-[842px] text-center bg-white">
-                    <div className="flex justify-center"></div>
-    <div className="d-flex justify-con
-    tent-center align-items-center bg-primary vh-100">
-      <div className="bg-white p-3 rounded w-25 text-center mx-auto">
-        <h2 className="text-2xl">กรอกข้อมูล</h2>
-        
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="mrms"><strong>คำนำหน้า</strong></label>
-            <input type="text" placeholder="ใส่คำนำหน้า" name="mrms" className="form-control rounded-0" onChange={handleChange} />
+      <div className="relative shadow-lg p-8 w-2/4 h-[842px] text-center bg-white">
+        <div className="flex justify-center"></div>
+        <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
+          <div className="bg-white p-3 rounded w-25 text-center mx-auto">
+            <h1 className="text-2xl mb-6">กรอกข้อมูล</h1>
+
+            <form onSubmit={handleSubmit}>
+              <div class="grid grid-cols-3 gap-4">
+
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">รหัสประจำตัว</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกรหัสประจำตัว.."
+                      name="iden_no"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">ชื่อ</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกชื่อจริง.."
+                      name="f_name"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">นามสกุล</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกนามสกุล.."
+                      name="l_name"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">เบอร์โทรศัพท์</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกเบอร์โทรศัพท์.."
+                      name="tel"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+                {/* prefix */}
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">คำนำหน้าชื่อ</span>
+                    </div>
+                    <select className="select select-bordered" name="prefix" onChange={handleChange} required>
+                      <option disabled selected>
+                        -- เลือก --
+                      </option>
+                      <option value="นาย">นาย</option>
+                      <option value="นาง">นาง</option>
+                      <option value="นางสาว">นางสาว</option>
+                    </select>
+                  </label>
+                </div>
+                {/* department */}
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">ตำแหน่งงาน</span>
+                    </div>
+                    <select className="select select-bordered" name="department" onChange={handleChange} required>
+
+                      <option disabled selected>
+                        -- เลือก --
+                      </option>
+                      <option value="Front End Developer">Front End Developer</option>
+                      <option value="Back End Developer">Back End Developer</option>
+                      <option value="Full Stack Developer">Full Stack Developer</option>
+                      <option value="DevOps Engineer">DevOps Engineer</option>
+                    </select>
+
+                  </label>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">เงินเดือน</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกเงินเดือน.."
+                      name="salary"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">ระยะเวลาการทำงาน (เช่น 2 ปี 5 เดือน)</span>
+                          </div>
+                          <input
+                          type="text"
+                          placeholder="กรอกระยะเวลาการทำงาน.."
+                          name="stage"
+                          className="input input-bordered w-full"
+                          onChange={handleChange}
+                          required
+                          
+                              />
+                              </label>
+                          </div>
+
+
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">วันที่เริ่มทำงาน</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกวันที่เริ่มทำงาน.."
+                      name="start_date"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">วันที่สิ้นสุดทำงาน</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกวันที่สิ้นสุดทำงาน.."
+                      name="end_date"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">ประกันสังคม</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกประกันสังคม.."
+                      name="social_secure"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+
+                </div>
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">ลาป่วย</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกลาป่วย.."
+                      name="sick_leave"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+
+                    />
+                  </label>
+                </div>
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">ลากิจ</span>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="กรอกลาป่วย.."
+                      name="personal_leave"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+
+                    />
+                  </label>
+                </div>
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">ธนาคาร</span>
+                    </div>
+                    <select className="select select-bordered" name="bank" onChange={handleChange} required>
+                      <option disabled selected>
+                        -- เลือก --
+                      </option>
+                      <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+                      <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+                      <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+                      <option value="ธนาคารทหารไทย">ธนาคารทหารไทย</option>
+                      <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+                      <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
+                      <option value="ธนาคารเกียรตินาคินธนาคารซีไอเอ็มบีไทย">ธนาคารเกียรตินาคินธนาคารซีไอเอ็มบีไทย</option>
+                      <option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option>
+                      <option value="ธนาคารทหารไทย">ธนาคารทหารไทย</option>
+                    </select>
+
+                  </label>
+                </div>
+                <div className="mb-3">
+                  <label className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text">เลขบัญชี</span>
+                    </div>
+                    <input
+                      type="number"
+                      placeholder="กรอกเลขบัญชี.."
+                      name="acc_num"
+                      className="input input-bordered w-full"
+                      onChange={handleChange}
+                      required
+
+                    />
+                  </label>
+                </div>
+                <div className="mb-3">
+                            <label className="form-control w-full">
+                            <div className="label">
+                                     <span className="label-text">สาขา</span>
+                                     </div>
+                                    <input
+                                    type="text"
+                                    placeholder="กรอกสาขา.."
+                                    name="bank_branch"
+                                    className="input input-bordered w-full"
+                                    onChange={handleChange}
+                                    required
+                                    
+
+                                    />
+                                </label>
+                                </div>
+              </div>
+
+
+
+
+              <div className="flex justify-center align-middle gap-4 mt-10">
+                <Link href={{ pathname: '/' }} className="btn px-12">ย้อนกลับ</Link>
+                <button
+                  className="btn btn-success text-white px-12"
+                  type="submit"
+
+                >
+                  บันทึก
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="mb-3">
-            <label htmlFor="firstname"><strong>ชื่อ</strong></label>
-            <input type="text" placeholder="ใส่ชื่อ" name="firstname" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="lastname"><strong>นามสกุล</strong></label>
-            <input type="text" placeholder="ใส่นามสกุล" name="lastname" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="department"><strong>ตำแหน่ง</strong></label>
-            <input type="text" placeholder="ใส่ตำแหน่ง" name="department" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="phonenumber"><strong>เบอร์โทร</strong></label>
-            <input type="text" placeholder="ใส่เบอร์" name="phonenumber" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="salary"><strong>เงินเดือน</strong></label>
-            <input type="text" placeholder="ใส่เงินเดือน" name="salary" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="StartDate"><strong>วันที่เริ่มทำงาน</strong></label>
-            <input type="text" placeholder="วันที่เริ่มทำงาน" name="StartDate" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="month"><strong>เดือน</strong></label>
-            <input type="text" placeholder="ใส่เดือน" name="month" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="year"><strong>ปี</strong></label>
-            <input type="text" placeholder="ใส่ปี" name="year" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          
-          <div className="mb-3">
-            <label htmlFor="identificationnumber"><strong>รหัสประจำตัว</strong></label>
-            <input type="text" placeholder="ใส่รหัสประจำตัว" name="identificationnumber" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="stage"><strong>ระยะเวลาการทำงาน</strong></label>
-            <input type="text" placeholder="ใส่ระยะเวลาการทำงาน" name="stage" className="form-control rounded-0" onChange={handleChange} />
-          </div>
-          <button className="bg-green-300 px-4 py-2 rounded-md ml-4" type="submit"btn btn-success w-100 rounded-e>บันทึก</button>
-        </form>
+        </div>
       </div>
-    </div>
-    </div>
     </div>
   );
 }
