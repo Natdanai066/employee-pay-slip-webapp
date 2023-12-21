@@ -21,6 +21,8 @@ function SignUp() {
     bank: "",
     acc_num:"",
     bank_branch:"",
+    circulation:"",
+    commission:"",
   });
 
   const [isSubmitSucceed, setIsSubmitSucceed] = useState(false)
@@ -56,6 +58,9 @@ function SignUp() {
         stage:"",
         acc_num:"",
         bank_branch:"",
+        ot_hour:"",
+        circulation:"",
+        commission:"",
       });
 
       window.location.reload();
@@ -239,7 +244,24 @@ function SignUp() {
                       required
                     />
                   </label>
+                  
                 </div>
+                <div className="mb-3">
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">รวมทั้งหมด(กี่เดือน เช่น 15 เดือน)</span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="กรอกวันที่สิ้นสุดทำงาน.."
+                                            name="month"
+                                            className="input input-bordered w-full"
+                                            onChange={handleChange}
+                                            required
+                                            
+                                        />
+                                    </label>
+                                </div>
                 <div className="mb-3">
                   <label className="form-control w-full">
                     <div className="label">
@@ -256,6 +278,38 @@ function SignUp() {
                   </label>
 
                 </div>
+                <div className="mb-3">
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">ยอดขาย</span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="กรอกยอดขาย.."
+                                            name="circulation"
+                                            className="input input-bordered w-full"
+                                            onChange={handleChange}
+                                            required
+                                            
+                                        />
+                                    </label>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">ค่าคอม %</span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="กรอกค่าคอม.."
+                                            name="commission"
+                                            className="input input-bordered w-full"
+                                            onChange={handleChange}
+                                            required
+                                            
+                                        />
+                                    </label>
+                                </div>
                 <div className="mb-3">
                   <label className="form-control w-full">
                     <div className="label">
@@ -335,6 +389,23 @@ function SignUp() {
                                     type="text"
                                     placeholder="กรอกสาขา.."
                                     name="bank_branch"
+                                    className="input input-bordered w-full"
+                                    onChange={handleChange}
+                                    required
+                                    
+
+                                    />
+                                </label>
+                                </div>
+                                <div className="mb-3">
+                            <label className="form-control w-full">
+                            <div className="label">
+                                     <span className="label-text">ot(ชั่วโมง)</span>
+                                     </div>
+                                    <input
+                                    type="text"
+                                    placeholder="กรอกot.."
+                                    name="ot_hour"
                                     className="input input-bordered w-full"
                                     onChange={handleChange}
                                     required

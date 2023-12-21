@@ -32,7 +32,7 @@ export class Employee {
   @Column()
   circulation: number;
 
-  @Column({ type: 'int', default: 5 })
+  @Column()
   commission: number;
 
   @Column()
@@ -67,6 +67,9 @@ export class Employee {
 
   @Column()
   bank_branch: string;
+
+  @Column()
+  month: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   create_at: Date;

@@ -20,6 +20,7 @@ export class CreateEmployeeDto {
   stage: string;
   acc_num: string;
   bank_branch: string;
+  month: string;
   create_at: Date;
   edit_at: Date;
 }

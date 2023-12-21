@@ -48,6 +48,10 @@ function editSlip() {
             stage: employee.stage,
             acc_num: employee.acc_num,
             bank_branch: employee.bank_branch,
+            ot_hour: employee.ot_hour,
+            circulation: employee.circulation,
+            month: employee.month,
+            commission: employee.commission,
         }
 
         try {
@@ -73,6 +77,10 @@ function editSlip() {
                 stage: "",
                 acc_num:"",
                 bank_branch:"",
+                ot_hour:"",
+                circulation:"",
+                month:"",
+                commission:"",
             });
 
             window.location.reload();
@@ -269,7 +277,23 @@ function editSlip() {
                                 <div className="mb-3">
                                     <label className="form-control w-full">
                                         <div className="label">
-                                            <span className="label-text">ประกันสังคม</span>
+                                            <span className="label-text">รวมทั้งหมด(กี่เดือน เช่น 15 เดือน)</span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="กรอกวันที่สิ้นสุดทำงาน.."
+                                            name="month"
+                                            className="input input-bordered w-full"
+                                            onChange={handleChange}
+                                            required
+                                            value={employee.month}
+                                        />
+                                    </label>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">ประกันสังคม(%)</span>
                                         </div>
                                         <input
                                             type="text"
@@ -279,6 +303,38 @@ function editSlip() {
                                             onChange={handleChange}
                                             required
                                             value={employee.social_secure}
+                                        />
+                                    </label>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">ยอดขาย</span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="กรอกยอดขาย.."
+                                            name="circulation"
+                                            className="input input-bordered w-full"
+                                            onChange={handleChange}
+                                            required
+                                            value={employee.circulation}
+                                        />
+                                    </label>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">ค่าคอม %</span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="กรอกค่าคอม.."
+                                            name="commission"
+                                            className="input input-bordered w-full"
+                                            onChange={handleChange}
+                                            required
+                                            value={employee.commission}
                                         />
                                     </label>
                                 </div>
@@ -372,7 +428,24 @@ function editSlip() {
                                     />
                                 </label>
                                 </div>
-                                
+                                <div className="mb-3">
+                            <label className="form-control w-full">
+                            <div className="label">
+                                     <span className="label-text">ot(ชั่วโมง)</span>
+                                     </div>
+                                    <input
+                                    type="text"
+                                    placeholder="กรอกot.."
+                                    name="ot_hour"
+                                    className="input input-bordered w-full"
+                                    onChange={handleChange}
+                                    required
+                                    value={employee.ot_hour}
+                                    
+
+                                    />
+                                </label>
+                                </div>
                             </div>
 
 

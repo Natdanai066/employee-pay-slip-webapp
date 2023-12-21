@@ -52,37 +52,37 @@ export default function ResultSlipPage() {
             <div>
               <h3>เงินเดือน {employee.salary} บาท</h3>
               <p>ยอดขาย {employee.circulation} บาท</p>
-              <p>ค่าคอม {employee.commission} % = {employee.commission*100} บาท </p>
+              <p>ค่าคอม {employee.commission} % = {(employee.circulation*employee.commission/100)} บาท </p>
               <p>OT {employee.ot_hour} ชั่วโมง = {employee.ot_hour*100} บาท</p>
             </div>
 
             <div>
             <p style={{ color: 'red' }}>รายการหัก</p>
-              <p>ประกันสังคม {employee.social_secure} % = {employee.social_secure*250} บาท </p>
+              <p>ประกันสังคม {employee.social_secure} % = {employee.salary*employee.social_secure/100} บาท </p>
             </div>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: 'green', padding: '10px' }}>
-            <h3 style={{ color: 'white', margin: '0' }}>รายได้รวม {employee.salary*0.95} บาท</h3>
-            <p style={{ color: 'white', margin: '0' }}>ยอดเงินหัก {employee.social_secure*250} บาท</p>
+            <h3 style={{ color: 'white', margin: '0' }}>รายได้รวม {employee.salary*1+employee.ot_hour*100+employee.circulation*employee.commission/100-employee.salary*employee.social_secure/100} บาท</h3>
+            <p style={{ color: 'white', margin: '0' }}>ยอดเงินหัก {employee.salary*employee.social_secure/100} บาท</p>
           </div>
 
 
           <div style={{ display: 'flex', backgroundColor: 'white', padding: '10px' }}>
-            <div style={{ flex: 1, marginRight: '10px' }}>
-              <p style={{ color: 'black', margin: '0' }}>ข้อความช่องที่ 1</p>
+            <div style={{ flex: 1, marginRight: '-250px' }}>
+              
             </div>
             <div style={{ flex: 1, marginRight: '10px' }}>
               <p style={{ color: 'black', margin: '0' }}>เงินสุทธิที่ได้รับ</p>
             </div>
             <div style={{ flex: 1 }}>
-              <h3 style={{ color: 'black', margin: '0' }}>{employee.salary*0.95}</h3>
-              <p style={{ color: 'black', margin: '0' }}>บาท/THB</p>
+              <h3 style={{ color: 'black', margin: '0' }}>{employee.salary*1+employee.ot_hour*100+employee.circulation*employee.commission/100-employee.salary*employee.social_secure/100}
+              บาท/THB </h3>
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p left>รายได้สะสม{employee.stage}{employee.salary*0.95*20}  บาท </p>
-          <p>ประกันสังคม  สะสม {employee.social_secure*250*20}</p>  
+          <p left>รายได้สะสม{employee.stage}{employee.salary*employee.month+employee.month*employee.ot_hour*100+employee.month*employee.circulation*employee.commission/100-employee.month*employee.salary*employee.social_secure/100} บาท </p>
+          <p>ประกันสังคม  สะสม {employee.salary*employee.social_secure/100*employee.month}</p>  
       <p> ลากิจ/ลาหยุด {employee.personal_leave} วัน</p>
           
       <p> คงเหลือวันลา {10-employee.sick_leave} วัน</p>
