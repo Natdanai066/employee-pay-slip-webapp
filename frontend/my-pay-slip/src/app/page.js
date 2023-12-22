@@ -97,6 +97,7 @@ export default function Page() {
                           <div className="flex justify-center align-middle gap-2">
                             <Link className="btn btn-info text-white" href={{ pathname: '/resultSlip', query: { empId: employee.id } }} >ดูสลิป</Link>
                             <Link className="btn btn-warning text-white"href={{ pathname: '/editSlip', query: { empId: employee.id } }} >แก้ไข</Link>
+              
                             <button className="btn btn-error text-white" onClick={() => deleteEmployee(employee.id)}>ลบ</button>
                           </div>
                         </td>

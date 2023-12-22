@@ -5,12 +5,13 @@ import Axios from 'axios';
 import { useSearchParams } from "next/navigation"
 
 
+
 export default function ResultSlipPage() {
   const BASE_URL = "http://localhost:3001"
   const searchParams = useSearchParams()
   const empIdParams = searchParams.get("empId");
   const [employee, setEmployeeList] = useState([])
-
+ 
   const getEmployees = () => {
     Axios.get(`${BASE_URL}/employee/${empIdParams}`).then((response) => {
       console.log(response.data);
@@ -70,9 +71,12 @@ export default function ResultSlipPage() {
 
           <div style={{ display: 'flex', backgroundColor: 'white', padding: '10px' }}>
             <div style={{ flex: 1, marginRight: '-250px' }}>
-              
+            
+      
             </div>
             <div style={{ flex: 1, marginRight: '10px' }}>
+              
+             
               <p style={{ color: 'black', margin: '0' }}>เงินสุทธิที่ได้รับ</p>
             </div>
             <div style={{ flex: 1 }}>
@@ -80,20 +84,34 @@ export default function ResultSlipPage() {
               บาท/THB </h3>
             </div>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p left>รายได้สะสม{employee.stage}{employee.salary*employee.month+employee.month*employee.ot_hour*100+employee.month*employee.circulation*employee.commission/100-employee.month*employee.salary*employee.social_secure/100} บาท </p>
-          <p>ประกันสังคม  สะสม {employee.salary*employee.social_secure/100*employee.month}</p>  
-      <p> ลากิจ/ลาหยุด {employee.personal_leave} วัน</p>
-          
-      <p> คงเหลือวันลา {10-employee.sick_leave} วัน</p>
-      <p> ลาป่วย {employee.sick_leave} วัน</p>
-          
-          <p>  คงเหลือวันลา {8-employee.sick_leave} วัน</p>
+          <div style={{ display:'overflow-x: auto;'}}>
+          <table>
+    <tr>
+      <th>รายได้สะสม {employee.stage}</th>
+      <th>ประกันสังคมสะสม</th>
+      <th>ลากิจ/ลาหยุด</th>
+      <th>คงเหลือวันลา</th>
+      <th>ลาป่วย</th>
+      <th>คงเหลือวันลา</th>
+      
+    </tr>
+    <tr>
+      <td>{employee.salary*employee.month+employee.month*employee.ot_hour*100+employee.month*employee.circulation*employee.commission/100-employee.month*employee.salary*employee.social_secure/100} บาท</td>
+      <td>{employee.salary*employee.social_secure/100*employee.month} บาท</td>
+      <td>{employee.personal_leave} วัน</td>
+      <td>{10-employee.sick_leave}</td>
+      <td>{employee.sick_leave}</td>
+      <td>{8-employee.sick_leave} </td>
+    </tr>
+    
+
+  </table>
 
           </div>
           
         </div>
       </div>
+      
 
     </>
   )
